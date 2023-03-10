@@ -1,0 +1,37 @@
+from abc import ABC, abstractmethod
+class Figure(ABC):
+    @abstractmethod
+    def oblicz_pole(self):
+        pass
+
+class Kwadrat(Figure):
+    def __init__(self, a) -> None:
+        self.a = a
+    def oblicz_pole(self):
+        return self.a * self.a
+
+
+class Prostokat(Figure):
+    def __init__(self, a, b) -> None:
+        self.a = a
+        self.b = b
+    def oblicz_pole(self):
+        return self.a * self.b
+
+class mainProgram:
+    def __init__(self):
+        self.kwadrat = Kwadrat(2)
+        self.prostokat = Prostokat(2,5)
+    def create_list(self):
+        return [self.kwadrat, self.prostokat]
+
+    def calculate_sum(self, figure_list):
+        suma = sum(figure.oblicz_pole() for figure in figure_list)
+        return suma
+
+if __name__ == "__main__":
+    program = mainProgram()
+    figure_list = program.create_list()
+    suma = program.calculate_sum(figure_list)
+    suma2 = program.calculate_sum([2,3])
+    print(suma)
